@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Book Your Free Consultation - Mont Clay Tech Co.</title>
+    <meta
+      name="description"
+      content="Schedule your free smart home consultation with Mont Clay Tech Co. Professional installation services for the Arkansas Delta & Little Rock."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* Color tokens */
+      :root {
+        --ink: #173542;
+        --slate: #4b6373;
+        --cream: #f9f6ee;
+        --amber: #d4943d;
+        --white: #ffffff;
+        --shadow: 0 10px 30px rgba(23, 53, 66, 0.08);
+        --shadow-lg: 0 20px 60px rgba(23, 53, 66, 0.12);
+        --border-light: rgba(75, 99, 115, 0.1);
+        --border-medium: rgba(75, 99, 115, 0.2);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--ink);
+        background: var(--cream);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .container {
+        width: min(800px, 94%);
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+
+      /* Header */
+      .header {
+        background: var(--white);
+        border-bottom: 1px solid var(--border-light);
+        padding: 16px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(12px);
+      }
+
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .brand-text {
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+
+      .back-link {
+        color: var(--slate);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .back-link:hover {
+        color: var(--amber);
+        transform: translateX(-2px);
+      }
+
+      /* Main Content */
+      .main {
+        padding: 48px 0 80px;
+        min-height: calc(100vh - 120px);
+      }
+
+      .form-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      .form-header h1 {
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        font-weight: 800;
+        margin: 0 0 16px;
+        color: var(--ink);
+        letter-spacing: -0.025em;
+      }
+
+      .form-header p {
+        font-size: 1.1rem;
+        color: var(--slate);
+        margin: 0 0 24px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .benefits {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+
+      .benefit {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--slate);
+        font-size: 0.9rem;
+      }
+
+      .benefit-icon {
+        width: 20px;
+        height: 20px;
+        background: var(--amber);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+
+      /* Form Styling */
+      .form-card {
+        background: var(--white);
+        border: 1px solid var(--border-light);
+        border-radius: 24px;
+        padding: 48px;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .form-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--amber), #e5a855);
+      }
+
+      .form-section {
+        margin-bottom: 32px;
+      }
+
+      .form-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .section-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin: 0 0 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .section-icon {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, var(--amber), #e5a855);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
+
+      .form-grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .form-grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: var(--ink);
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .required {
+        color: var(--amber);
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        padding: 16px 20px;
+        border: 2px solid var(--border-light);
+        border-radius: 16px;
+        font: inherit;
+        background: var(--white);
+        color: var(--ink);
+        transition: all 0.3s ease;
+        font-size: 1rem;
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: var(--amber);
+        box-shadow: 0 0 0 4px rgba(212, 148, 61, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 120px;
+        font-family: inherit;
+      }
+
+      .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 8px;
+      }
+
+      .checkbox-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+        background: var(--cream);
+        border: 1px solid var(--border-light);
+        border-radius: 12px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+
+      .checkbox-item:hover {
+        border-color: var(--amber);
+        transform: translateY(-1px);
+      }
+
+      .checkbox-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        accent-color: var(--amber);
+        margin-top: 2px;
+      }
+
+      .checkbox-content {
+        flex: 1;
+      }
+
+      .checkbox-title {
+        font-weight: 600;
+        color: var(--ink);
+        margin: 0 0 4px;
+      }
+
+      .checkbox-description {
+        font-size: 0.9rem;
+        color: var(--slate);
+        margin: 0;
+      }
+
+      .price-tag {
+        background: var(--amber);
+        color: var(--ink);
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-left: 8px;
+      }
+
+      /* Submit Section */
+      .submit-section {
+        background: var(--cream);
+        border-radius: 20px;
+        padding: 32px;
+        text-align: center;
+        border: 1px solid var(--border-light);
+      }
+
+      .submit-button {
+        background: linear-gradient(135deg, var(--amber), #e5a855);
+        color: var(--ink);
+        border: none;
+        padding: 18px 40px;
+        border-radius: 16px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(212, 148, 61, 0.3);
+        margin-bottom: 16px;
+        min-width: 200px;
+      }
+
+      .submit-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(212, 148, 61, 0.4);
+      }
+
+      .submit-button:active {
+        transform: translateY(-1px);
+      }
+
+      .submit-button:disabled {
+        opacity: 0.6;
+        transform: none;
+        cursor: not-allowed;
+      }
+
+      .form-status {
+        margin-top: 16px;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: 500;
+        display: none;
+      }
+
+      .form-status.success {
+        background: rgba(76, 175, 80, 0.1);
+        color: #4caf50;
+        border: 1px solid rgba(76, 175, 80, 0.2);
+      }
+
+      .form-status.error {
+        background: rgba(244, 67, 54, 0.1);
+        color: #f44336;
+        border: 1px solid rgba(244, 67, 54, 0.2);
+      }
+
+      .privacy-note {
+        font-size: 0.85rem;
+        color: var(--slate);
+        text-align: center;
+        margin-top: 16px;
+        line-height: 1.5;
+      }
+
+      .privacy-note a {
+        color: var(--amber);
+        text-decoration: none;
+      }
+
+      .privacy-note a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .form-card {
+          padding: 32px 24px;
+        }
+
+        .form-grid-2 {
+          grid-template-columns: 1fr;
+        }
+
+        .benefits {
+          gap: 16px;
+        }
+
+        .benefit {
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header-content {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+
+        .form-card {
+          padding: 24px 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="brand">
+            <div class="logo">
+              <img src="assets/logo.png" alt="Mont Clay Tech Co. Logo" />
+            </div>
+            <span class="brand-text">Mont Clay Tech Co.</span>
+          </a>
+          <a href="index.html" class="back-link"> ← Back to Home </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+      <div class="container">
+        <!-- Form Header -->
+        <div class="form-header">
+          <h1>Book Your Free Consultation</h1>
+          <p>
+            Let's design the perfect smart home setup for your lifestyle. Our
+            experts will assess your needs and provide a custom solution that
+            fits your budget and goals.
+          </p>
+          <div class="benefits">
+            <div class="benefit">
+              <div class="benefit-icon">✓</div>
+              <span>100% Free Consultation</span>
+            </div>
+            <div class="benefit">
+              <div class="benefit-icon">✓</div>
+              <span>No Pressure Assessment</span>
+            </div>
+            <div class="benefit">
+              <div class="benefit-icon">✓</div>
+              <span>Custom Solutions</span>
+            </div>
+            <div class="benefit">
+              <div class="benefit-icon">✓</div>
+              <span>Same-Day Response</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Consultation Form -->
+        <form id="consultation-form" class="form-card">
+          <!-- Personal Information -->
+          <div class="form-section">
+            <h3 class="section-title">
+              <div class="section-icon">👤</div>
+              Personal Information
+            </h3>
+            <div class="form-grid form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="firstName">
+                  First Name <span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  class="form-input"
+                  required
+                  placeholder="Enter your first name"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastName">
+                  Last Name <span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  class="form-input"
+                  required
+                  placeholder="Enter your last name"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="form-section">
+            <h3 class="section-title">
+              <div class="section-icon">📞</div>
+              Contact Information
+            </h3>
+            <div class="form-grid form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="phone">
+                  Phone Number <span class="required">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="form-input"
+                  required
+                  placeholder="(501) 555-0123"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">
+                  Email Address <span class="required">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  required
+                  placeholder="your@email.com"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Location Information -->
+          <div class="form-section">
+            <h3 class="section-title">
+              <div class="section-icon">📍</div>
+              Location Information
+            </h3>
+            <div class="form-grid form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="city">
+                  City <span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  class="form-input"
+                  required
+                  placeholder="Little Rock"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="zipCode"> ZIP Code </label>
+                <input
+                  type="text"
+                  id="zipCode"
+                  name="zipCode"
+                  class="form-input"
+                  placeholder="72201"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Smart Home Preferences -->
+          <div class="form-section">
+            <h3 class="section-title">
+              <div class="section-icon">🏠</div>
+              Smart Home Preferences
+            </h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="preferredHub">
+                  Preferred Smart Home Hub
+                </label>
+                <select
+                  id="preferredHub"
+                  name="preferredHub"
+                  class="form-select"
+                >
+                  <option value="">Choose your preference</option>
+                  <option value="alexa">Amazon Alexa</option>
+                  <option value="google">Google Home</option>
+                  <option value="apple">Apple HomeKit</option>
+                  <option value="unsure">Not sure yet</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="starterPackage">
+                  Starter Package Interest
+                </label>
+                <select
+                  id="starterPackage"
+                  name="starterPackage"
+                  class="form-select"
+                >
+                  <option value="">Select a package</option>
+                  <option value="lighting">
+                    Smart Lighting Starter (from $149)
+                  </option>
+                  <option value="security">Starter Security (from $199)</option>
+                  <option value="custom">Custom Solution</option>
+                  <option value="unsure">Not sure yet</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Services Interest -->
+          <div class="form-section">
+            <h3 class="section-title">
+              <div class="section-icon">⚙️</div>
+              Services You're Interested In
+            </h3>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" name="services" value="lighting" />
+                <div class="checkbox-content">
+                  <div class="checkbox-title">
+                    Smart Lighting <span class="price-tag">from $149</span>
+                  </div>
+                  <div class="checkbox-description">
+                    Control bulbs, switches & plugs by voice or app
+                  </div>
+                </div>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="services" value="security" />
+                <div class="checkbox-content">
+                  <div class="checkbox-title">
+                    Security Cameras & Doorbells
+                    <span class="price-tag">from $199</span>
+                  </div>
+                  <div class="checkbox-description">
+                    HD cameras with mobile alerts and cloud storage
+                  </div>
+                </div>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="services" value="locks" />
+                <div class="checkbox-content">
+                  <div class="checkbox-title">
+                    Smart Locks <span class="price-tag">from $249</span>
+                  </div>
+                  <div class="checkbox-description">
+                    Keyless entry with codes and smartphone control
+                  </div>
+                </div>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="services" value="wifi" />
+                <div class="checkbox-content">
+                  <div class="checkbox-title">
+                    Mesh Wi-Fi Setup <span class="price-tag">from $299</span>
+                  </div>
+                  <div class="checkbox-description">
+                    Strong internet coverage throughout your home
+                  </div>
+                </div>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="services" value="safety" />
+                <div class="checkbox-content">
+                  <div class="checkbox-title">
+                    Safety & Monitoring <span class="price-tag">from $179</span>
+                  </div>
+                  <div class="checkbox-description">
+                    Smart smoke/CO detectors with phone alerts
+                  </div>
+                </div>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="services" value="elder" />
+                <div class="checkbox-content">
+                  <div class="checkbox-title">
+                    Elder Care Solutions
+                    <span class="price-tag">from $149</span>
+                  </div>
+                  <div class="checkbox-description">
+                    Emergency alert systems and monitoring
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Additional Information -->
+          <div class="form-section">
+            <h3 class="section-title">
+              <div class="section-icon">📝</div>
+              Tell Us About Your Goals
+            </h3>
+            <div class="form-group">
+              <label class="form-label" for="goals">
+                What would you like to achieve with your smart home?
+              </label>
+              <textarea
+                id="goals"
+                name="goals"
+                class="form-textarea"
+                placeholder="Tell us about your smart home goals, any specific concerns, timeline, or questions you have..."
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Submit Section -->
+          <div class="submit-section">
+            <button type="submit" class="submit-button" id="submitBtn">
+              Schedule My Free Consultation
+            </button>
+            <div class="form-status" id="formStatus"></div>
+            <div class="privacy-note">
+              By submitting this form, you agree to our
+              <a href="#privacy">Privacy Policy</a>
+              and consent to being contacted about our services. We typically
+              respond within 24 hours.
+              <br /><br />
+              <strong
+                >Free consultation • No pressure • Custom solutions</strong
+              >
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      // Form handling
+      document
+        .getElementById("consultation-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const submitBtn = document.getElementById("submitBtn");
+          const formStatus = document.getElementById("formStatus");
+          const originalText = submitBtn.textContent;
+
+          // Show loading state
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Submitting...";
+          formStatus.style.display = "none";
+
+          // Collect form data
+          const formData = new FormData(this);
+          const services = [];
+          formData
+            .getAll("services")
+            .forEach((service) => services.push(service));
+
+          const data = {
+            firstName: formData.get("firstName"),
+            lastName: formData.get("lastName"),
+            phone: formData.get("phone"),
+            email: formData.get("email"),
+            city: formData.get("city"),
+            zipCode: formData.get("zipCode"),
+            preferredHub: formData.get("preferredHub"),
+            starterPackage: formData.get("starterPackage"),
+            services: services,
+            goals: formData.get("goals"),
+          };
+
+          try {
+            // Simulate API call (replace with your actual endpoint)
+            await new Promise((resolve) => setTimeout(resolve, 2000));
+
+            // Success
+            formStatus.textContent =
+              "Success! We'll contact you within 24 hours to schedule your free consultation.";
+            formStatus.className = "form-status success";
+            formStatus.style.display = "block";
+
+            // Reset form
+            this.reset();
+
+            // Scroll to status
+            formStatus.scrollIntoView({ behavior: "smooth", block: "center" });
+          } catch (error) {
+            // Error
+            formStatus.textContent =
+              "Something went wrong. Please try again or call us directly at (501) 555-1234.";
+            formStatus.className = "form-status error";
+            formStatus.style.display = "block";
+          } finally {
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          }
+        });
+
+      // Form field interactions
+      document
+        .querySelectorAll(".form-input, .form-select, .form-textarea")
+        .forEach((field) => {
+          field.addEventListener("focus", function () {
+            this.parentElement.style.transform = "translateY(-2px)";
+          });
+
+          field.addEventListener("blur", function () {
+            this.parentElement.style.transform = "translateY(0)";
+          });
+        });
+
+      // Checkbox interactions
+      document.querySelectorAll(".checkbox-item").forEach((item) => {
+        item.addEventListener("click", function (e) {
+          if (e.target.type !== "checkbox") {
+            const checkbox = this.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+          }
+        });
+      });
+
+      // Auto-format phone number
+      document.getElementById("phone").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, "");
+        if (value.length >= 6) {
+          value = `(${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(
+            6,
+            10
+          )}`;
+        } else if (value.length >= 3) {
+          value = `(${value.slice(0, 3)}) ${value.slice(3)}`;
+        }
+        e.target.value = value;
+      });
+    </script>
+    <!-- Footer -->
+    <footer
+      style="
+        background: #173542;
+        color: #f9f6ee;
+        margin-top: 0;
+        position: relative;
+        overflow: hidden;
+      "
+    >
+      <!-- Decorative top border -->
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, transparent, #d4943d, transparent);
+          opacity: 0.8;
+        "
+      ></div>
+
+      <div
+        style="
+          display: grid;
+          gap: 48px;
+          padding: 64px 16px 32px;
+          max-width: 1200px;
+          margin: 0 auto;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        "
+      >
+        <!-- Company Info -->
+        <div style="display: flex; flex-direction: column; gap: 20px">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              margin-bottom: 8px;
+            "
+          >
+            <div
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+                background: linear-gradient(135deg, #d4943d, #e5a855);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #173542;
+                font-weight: 800;
+                font-size: 16px;
+              "
+            >
+              <img src="assets/logo.png" alt="Mont Clay Logo" />
+            </div>
+            <div>
+              <h3
+                style="
+                  margin: 0;
+                  font-size: 1.25rem;
+                  font-weight: 700;
+                  color: #f9f6ee;
+                "
+              >
+                Mont Clay Tech Co.
+              </h3>
+              <p
+                style="
+                  margin: 0;
+                  font-size: 0.9rem;
+                  color: rgba(249, 246, 238, 0.7);
+                "
+              >
+                Smart Home Made Simple
+              </p>
+            </div>
+          </div>
+
+          <p
+            style="
+              margin: 0;
+              line-height: 1.6;
+              color: rgba(249, 246, 238, 0.9);
+              font-size: 0.95rem;
+            "
+          >
+            Professional smart home installation services for everyday
+            homeowners. We make technology simple, reliable, and accessible
+            throughout the Arkansas Delta and Little Rock metro area.
+          </p>
+
+          <!-- Service Areas -->
+          <div
+            style="
+              background: rgba(249, 246, 238, 0.08);
+              border: 1px solid rgba(249, 246, 238, 0.15);
+              border-radius: 12px;
+              padding: 16px;
+              margin-top: 8px;
+            "
+          >
+            <h4
+              style="
+                margin: 0 0 12px 0;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: #d4943d;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+              "
+            >
+              Service Areas
+            </h4>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                font-size: 0.85rem;
+                color: rgba(249, 246, 238, 0.8);
+              "
+            >
+              <span>• Little Rock</span>
+              <span>• North Little Rock</span>
+              <span>• Conway</span>
+              <span>• Benton</span>
+              <span>• Jacksonville</span>
+              <span>• Sherwood</span>
+              <span>• Arkansas Delta</span>
+              <span>• Surrounding Areas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div style="display: flex; flex-direction: column; gap: 24px">
+          <h4
+            style="
+              margin: 0 0 8px 0;
+              font-size: 1.1rem;
+              font-weight: 600;
+              color: #f9f6ee;
+              border-bottom: 2px solid #d4943d;
+              padding-bottom: 8px;
+              display: inline-block;
+            "
+          >
+            Get In Touch
+          </h4>
+
+          <!-- Contact Methods -->
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <!-- Phone -->
+            <a
+              href="tel:+15015551234"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                color: #f9f6ee;
+                text-decoration: none;
+                padding: 12px;
+                border-radius: 10px;
+                background: rgba(249, 246, 238, 0.05);
+                border: 1px solid rgba(249, 246, 238, 0.1);
+                transition: all 0.2s ease;
+              "
+              onmouseover="this.style.background='rgba(212, 148, 61, 0.1)'; this.style.borderColor='#D4943D'; this.style.transform='translateX(4px)'"
+              onmouseout="this.style.background='rgba(249, 246, 238, 0.05)'; this.style.borderColor='rgba(249, 246, 238, 0.1)'; this.style.transform='translateX(0)'"
+            >
+              <span
+                style="
+                  width: 32px;
+                  height: 32px;
+                  background: #d4943d;
+                  border-radius: 8px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 14px;
+                "
+                >📞</span
+              >
+              <div>
+                <div style="font-weight: 600; font-size: 1rem">
+                  (501) 555-1234
+                </div>
+                <div
+                  style="font-size: 0.85rem; color: rgba(249, 246, 238, 0.7)"
+                >
+                  Call or text for faster response
+                </div>
+              </div>
+            </a>
+
+            <!-- Email -->
+            <a
+              href="mailto:hello@montclaytech.com"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                color: #f9f6ee;
+                text-decoration: none;
+                padding: 12px;
+                border-radius: 10px;
+                background: rgba(249, 246, 238, 0.05);
+                border: 1px solid rgba(249, 246, 238, 0.1);
+                transition: all 0.2s ease;
+              "
+              onmouseover="this.style.background='rgba(212, 148, 61, 0.1)'; this.style.borderColor='#D4943D'; this.style.transform='translateX(4px)'"
+              onmouseout="this.style.background='rgba(249, 246, 238, 0.05)'; this.style.borderColor='rgba(249, 246, 238, 0.1)'; this.style.transform='translateX(0)'"
+            >
+              <span
+                style="
+                  width: 32px;
+                  height: 32px;
+                  background: #d4943d;
+                  border-radius: 8px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 14px;
+                "
+                >✉️</span
+              >
+              <div>
+                <div style="font-weight: 600; font-size: 1rem">
+                  hello@montclaytech.com
+                </div>
+                <div
+                  style="font-size: 0.85rem; color: rgba(249, 246, 238, 0.7)"
+                >
+                  Email us your questions
+                </div>
+              </div>
+            </a>
+
+            <!-- Business Hours -->
+            <div
+              style="
+                padding: 16px;
+                background: rgba(249, 246, 238, 0.05);
+                border: 1px solid rgba(249, 246, 238, 0.1);
+                border-radius: 10px;
+                margin-top: 8px;
+              "
+            >
+              <h5
+                style="
+                  margin: 0 0 12px 0;
+                  font-size: 0.9rem;
+                  font-weight: 600;
+                  color: #d4943d;
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                "
+              >
+                <span>🕐</span> Business Hours
+              </h5>
+              <div
+                style="
+                  display: grid;
+                  gap: 4px;
+                  font-size: 0.85rem;
+                  color: rgba(249, 246, 238, 0.8);
+                "
+              >
+                <div style="display: flex; justify-content: space-between">
+                  <span>Monday - Friday:</span>
+                  <span style="color: #f9f6ee; font-weight: 500"
+                    >8:00 AM - 6:00 PM</span
+                  >
+                </div>
+                <div style="display: flex; justify-content: space-between">
+                  <span>Saturday:</span>
+                  <span style="color: #f9f6ee; font-weight: 500"
+                    >9:00 AM - 4:00 PM</span
+                  >
+                </div>
+                <div style="display: flex; justify-content: space-between">
+                  <span>Sunday:</span>
+                  <span style="color: rgba(249, 246, 238, 0.6)"
+                    >By Appointment</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Services & Links -->
+        <div style="display: flex; flex-direction: column; gap: 24px">
+          <h4
+            style="
+              margin: 0 0 8px 0;
+              font-size: 1.1rem;
+              font-weight: 600;
+              color: #f9f6ee;
+              border-bottom: 2px solid #d4943d;
+              padding-bottom: 8px;
+              display: inline-block;
+            "
+          >
+            Our Services
+          </h4>
+
+          <!-- Services List -->
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <a
+              href="#services"
+              style="
+                color: rgba(249, 246, 238, 0.8);
+                text-decoration: none;
+                padding: 8px 0;
+                border-bottom: 1px solid rgba(249, 246, 238, 0.1);
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              "
+              onmouseover="this.style.color='#D4943D'; this.style.paddingLeft='8px'"
+              onmouseout="this.style.color='rgba(249, 246, 238, 0.8)'; this.style.paddingLeft='0'"
+            >
+              <span>💡</span> Smart Lighting Systems
+            </a>
+            <a
+              href="#services"
+              style="
+                color: rgba(249, 246, 238, 0.8);
+                text-decoration: none;
+                padding: 8px 0;
+                border-bottom: 1px solid rgba(249, 246, 238, 0.1);
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              "
+              onmouseover="this.style.color='#D4943D'; this.style.paddingLeft='8px'"
+              onmouseout="this.style.color='rgba(249, 246, 238, 0.8)'; this.style.paddingLeft='0'"
+            >
+              <span>📹</span> Security Cameras & Doorbells
+            </a>
+            <a
+              href="#services"
+              style="
+                color: rgba(249, 246, 238, 0.8);
+                text-decoration: none;
+                padding: 8px 0;
+                border-bottom: 1px solid rgba(249, 246, 238, 0.1);
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              "
+              onmouseover="this.style.color='#D4943D'; this.style.paddingLeft='8px'"
+              onmouseout="this.style.color='rgba(249, 246, 238, 0.8)'; this.style.paddingLeft='0'"
+            >
+              <span>🔐</span> Smart Lock Installation
+            </a>
+            <a
+              href="#services"
+              style="
+                color: rgba(249, 246, 238, 0.8);
+                text-decoration: none;
+                padding: 8px 0;
+                border-bottom: 1px solid rgba(249, 246, 238, 0.1);
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              "
+              onmouseover="this.style.color='#D4943D'; this.style.paddingLeft='8px'"
+              onmouseout="this.style.color='rgba(249, 246, 238, 0.8)'; this.style.paddingLeft='0'"
+            >
+              <span>📶</span> Mesh Wi-Fi Setup
+            </a>
+            <a
+              href="#services"
+              style="
+                color: rgba(249, 246, 238, 0.8);
+                text-decoration: none;
+                padding: 8px 0;
+                border-bottom: 1px solid rgba(249, 246, 238, 0.1);
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              "
+              onmouseover="this.style.color='#D4943D'; this.style.paddingLeft='8px'"
+              onmouseout="this.style.color='rgba(249, 246, 238, 0.8)'; this.style.paddingLeft='0'"
+            >
+              <span>🚨</span> Safety & Monitoring
+            </a>
+            <a
+              href="#services"
+              style="
+                color: rgba(249, 246, 238, 0.8);
+                text-decoration: none;
+                padding: 8px 0;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              "
+              onmouseover="this.style.color='#D4943D'; this.style.paddingLeft='8px'"
+              onmouseout="this.style.color='rgba(249, 246, 238, 0.8)'; this.style.paddingLeft='0'"
+            >
+              <span>🆘</span> Elder Care Solutions
+            </a>
+          </div>
+
+          <!-- Quick Actions -->
+          <div
+            style="
+              margin-top: 16px;
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+            "
+          >
+            <a
+              href="#book"
+              style="
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 14px 20px;
+                background: linear-gradient(135deg, #d4943d, #e5a855);
+                color: #173542;
+                text-decoration: none;
+                border-radius: 12px;
+                font-weight: 600;
+                transition: all 0.2s ease;
+                box-shadow: 0 4px 12px rgba(212, 148, 61, 0.3);
+              "
+              onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(212, 148, 61, 0.4)'"
+              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(212, 148, 61, 0.3)'"
+            >
+              📅 Book Free Consultation
+            </a>
+            <a
+              href="#packages"
+              style="
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 12px 20px;
+                background: transparent;
+                color: #f9f6ee;
+                text-decoration: none;
+                border: 1px solid rgba(249, 246, 238, 0.3);
+                border-radius: 12px;
+                font-weight: 500;
+                transition: all 0.2s ease;
+              "
+              onmouseover="this.style.background='rgba(249, 246, 238, 0.1)'; this.style.borderColor='#D4943D'"
+              onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(249, 246, 238, 0.3)'"
+            >
+              💰 View Starter Packages
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Section -->
+      <div
+        style="
+          border-top: 1px solid rgba(249, 246, 238, 0.15);
+          background: rgba(17, 40, 51, 0.8);
+          padding: 24px 0;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+          "
+        >
+          <!-- Copyright -->
+          <div style="color: rgba(249, 246, 238, 0.7); font-size: 0.85rem">
+            © <span id="year">2025</span> Mont Clay Tech Co. All rights
+            reserved.
+          </div>
+
+          <!-- Legal Links -->
+          <div
+            style="
+              display: flex;
+              gap: 24px;
+              align-items: center;
+              flex-wrap: wrap;
+            "
+          >
+            <a
+              href="#privacy"
+              style="
+                color: rgba(249, 246, 238, 0.6);
+                text-decoration: none;
+                font-size: 0.85rem;
+                transition: color 0.2s ease;
+              "
+              onmouseover="this.style.color='#D4943D'"
+              onmouseout="this.style.color='rgba(249, 246, 238, 0.6)'"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="#terms"
+              style="
+                color: rgba(249, 246, 238, 0.6);
+                text-decoration: none;
+                font-size: 0.85rem;
+                transition: color 0.2s ease;
+              "
+              onmouseover="this.style.color='#D4943D'"
+              onmouseout="this.style.color='rgba(249, 246, 238, 0.6)'"
+            >
+              Terms of Service
+            </a>
+            <a
+              href="#warranty"
+              style="
+                color: rgba(249, 246, 238, 0.6);
+                text-decoration: none;
+                font-size: 0.85rem;
+                transition: color 0.2s ease;
+              "
+              onmouseover="this.style.color='#D4943D'"
+              onmouseout="this.style.color='rgba(249, 246, 238, 0.6)'"
+            >
+              Warranty Info
+            </a>
+          </div>
+
+          <!-- Certifications & Trust Badges -->
+          <div style="display: flex; align-items: center; gap: 12px">
+            <div
+              style="
+                background: rgba(249, 246, 238, 0.1);
+                border: 1px solid rgba(249, 246, 238, 0.2);
+                border-radius: 8px;
+                padding: 6px 12px;
+                font-size: 0.75rem;
+                color: rgba(249, 246, 238, 0.8);
+                display: flex;
+                align-items: center;
+                gap: 4px;
+              "
+            >
+              🛡️ Insured & Licensed
+            </div>
+            <div
+              style="
+                background: rgba(249, 246, 238, 0.1);
+                border: 1px solid rgba(249, 246, 238, 0.2);
+                border-radius: 8px;
+                padding: 6px 12px;
+                font-size: 0.75rem;
+                color: rgba(249, 246, 238, 0.8);
+                display: flex;
+                align-items: center;
+                gap: 4px;
+              "
+            >
+              ⭐ BBB A+ Rated
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Background decorative elements -->
+      <div
+        style="
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 200px;
+          height: 200px;
+          background: radial-gradient(
+            circle,
+            rgba(212, 148, 61, 0.05),
+            transparent
+          );
+          border-radius: 50%;
+          pointer-events: none;
+        "
+      ></div>
+    </footer>
+  </body>
+</html>
