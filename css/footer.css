@@ -1,0 +1,246 @@
+/* ========== Mont Clay Footer ========== */
+:root {
+  /* Fallbacks in case globals aren't defined elsewhere */
+  --ink: #173542;
+  --cream: #F9F6EE;
+  --amber: #D4943D;
+  --slate: #4B6373;
+}
+
+/* Base */
+.mc-footer {
+  background: var(--ink);
+  color: var(--cream);
+  margin-top: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative top border */
+.mc-footer__top-border {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  opacity: .8;
+}
+
+/* Layout grid */
+.mc-footer__grid {
+  display: grid;
+  gap: 48px;
+  padding: 64px 16px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Brand */
+.mc-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.mc-footer__brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--cream);
+}
+
+.mc-footer__logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--amber), #E5A855);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.mc-footer__logo img { width: 100%; height: 100%; object-fit: cover; }
+
+.mc-footer__brand-name { font-weight: 800; font-size: 16px; }
+
+.mc-footer__brand-text h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cream);
+}
+.mc-footer__brand-text p {
+  margin: 0;
+  font-size: .9rem;
+  color: rgba(249,246,238,.7);
+}
+
+/* About */
+.mc-footer__about {
+  margin: 0;
+  line-height: 1.6;
+  color: rgba(249,246,238,.9);
+  font-size: .95rem;
+}
+
+/* Card */
+.mc-footer__card {
+  background: rgba(249,246,238,.08);
+  border: 1px solid rgba(249,246,238,.15);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 8px;
+}
+.mc-footer__card-title {
+  margin: 0 0 12px 0;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.mc-footer__areas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: .85rem;
+  color: rgba(249,246,238,.8);
+}
+
+/* Section titles */
+.mc-footer__section-title {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cream);
+  border-bottom: 2px solid var(--amber);
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+/* Contact */
+.mc-footer__contact-list { display: flex; flex-direction: column; gap: 16px; }
+
+.mc-footer__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--cream);
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(249,246,238,.05);
+  border: 1px solid rgba(249,246,238,.1);
+  transition: all .2s ease;
+}
+.mc-footer__contact-item:hover {
+  background: rgba(212,148,61,.10);
+  border-color: var(--amber);
+  transform: translateX(4px);
+}
+
+.mc-footer__icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: grid; place-items: center; font-size: 14px;
+  background: var(--cream); color: #173542;
+}
+
+.mc-footer__contact-title { font-weight: 600; font-size: 1rem; }
+.mc-footer__contact-sub { font-size: .85rem; color: rgba(249,246,238,.7); }
+
+/* Hours */
+.mc-footer__hours {
+  padding: 16px;
+  background: rgba(249,246,238,.05);
+  border: 1px solid rgba(249,246,238,.1);
+  border-radius: 10px;
+  margin-top: 8px;
+}
+.mc-footer__hours-title {
+  margin: 0 0 12px 0;
+  font-size: .9rem; font-weight: 600; color: var(--amber);
+  display: flex; align-items: center; gap: 8px;
+}
+.mc-footer__hours-grid { display: grid; gap: 4px; font-size: .85rem; color: rgba(249,246,238,.8); }
+.mc-footer__hours-grid > div { display: flex; justify-content: space-between; }
+.mc-footer__hours-grid .muted { color: rgba(249,246,238,.6); }
+
+/* Services */
+.mc-footer__services { display: flex; flex-direction: column; gap: 12px; }
+
+.mc-footer__service {
+  display: flex; align-items: center; gap: 12px;
+  color: rgba(249,246,238,.8); text-decoration: none;
+  padding: 12px 16px; border: 1px solid rgba(249,246,238,.1);
+  border-radius: 10px; transition: all .2s ease;
+  background: rgba(249,246,238,.05);
+}
+.mc-footer__service img { width: 24px; height: 24px; object-fit: contain; }
+.mc-footer__service:hover {
+  color: var(--amber); padding-left: 20px; border-color: var(--amber);
+}
+
+/* Actions */
+.mc-footer__actions { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; }
+
+.mc-footer__btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 14px 20px; text-decoration: none; border-radius: 12px;
+  font-weight: 600; transition: all .2s ease;
+}
+.mc-footer__btn--primary {
+  background: linear-gradient(135deg, var(--amber), #E5A855); color: #173542;
+  box-shadow: 0 4px 12px rgba(212,148,61,.3);
+}
+.mc-footer__btn--primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,148,61,.4); }
+
+.mc-footer__btn--ghost {
+  background: transparent; color: var(--cream);
+  border: 1px solid rgba(249,246,238,.3);
+}
+.mc-footer__btn--ghost:hover { background: rgba(249,246,238,.1); border-color: var(--amber); }
+
+/* Bottom bar */
+.mc-footer__bottom {
+  border-top: 1px solid rgba(249,246,238,.15);
+  background: rgba(17,40,51,.8);
+  padding: 24px 0;
+}
+.mc-footer__bottom-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px; max-width: 1200px; margin: 0 auto; padding: 0 16px;
+}
+.mc-footer__copyright { color: rgba(249,246,238,.7); font-size: .85rem; }
+
+.mc-footer__legal { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+.mc-footer__legal a {
+  color: rgba(249,246,238,.6); text-decoration: none; font-size: .85rem; transition: color .2s ease;
+}
+.mc-footer__legal a:hover { color: var(--amber); }
+
+.mc-footer__badges { display: flex; align-items: center; gap: 12px; }
+.mc-footer__badge {
+  background: rgba(249,246,238,.1);
+  border: 1px solid rgba(249,246,238,.2);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: .75rem;
+  color: rgba(249,246,238,.8);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Decorative bg */
+.mc-footer__bg-deco {
+  position: absolute; bottom: 0; right: 0; width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(212,148,61,.05), transparent);
+  border-radius: 50%; pointer-events: none;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .mc-footer__grid { grid-template-columns: 1fr 1fr 1fr; }
+}
