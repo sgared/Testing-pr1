@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard - Mont Clay Tech Co.</title>
+    <meta
+      name="description"
+      content="Admin dashboard for managing consultation requests and customer interactions."
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23173542'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23F9F6EE' font-family='system-ui' font-size='14' font-weight='800'%3EMC%3C/text%3E%3C/svg%3E"
+    />
+
+    <link href="css/style.admin.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+      <div class="header-content">
+        <div class="admin-brand">
+          <div class="admin-logo">
+            <img src="assets/logo.PNG" alt="Mont Clay Logo" />
+          </div>
+          <span>Mont Clay Admin Dashboard</span>
+        </div>
+        <nav class="admin-nav">
+          <button class="nav-btn active" data-section="overview">
+            Overview
+          </button>
+          <button class="nav-btn" data-section="all-requests">
+            All Requests
+          </button>
+          <button class="nav-btn" data-section="customers">Customers</button>
+          <button class="logout-btn" id="logoutBtn">Logout</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="admin-container">
+      <!-- Overview Section -->
+      <section id="overview-section" class="admin-section active">
+        <div class="page-header">
+          <h1 class="page-title">Consultation Overview</h1>
+          <p class="page-subtitle">
+            Click on any metric to view detailed lists and take actions
+          </p>
+        </div>
+
+        <!-- Clickable Stats Cards -->
+        <div class="stats-grid">
+          <div
+            class="stat-card clickable"
+            id="total-requests-card"
+            data-filter="all"
+          >
+            <div class="stat-header">
+              <span class="stat-title">Total Requests</span>
+              <div class="stat-icon total-icon">📋</div>
+            </div>
+            <p class="stat-value" id="totalRequestsCount">0</p>
+            <p class="stat-description">All consultation requests</p>
+            <button class="stat-action-btn">View All →</button>
+          </div>
+
+          <div
+            class="stat-card clickable"
+            id="pending-requests-card"
+            data-filter="new"
+          >
+            <div class="stat-header">
+              <span class="stat-title">Pending Review</span>
+              <div class="stat-icon pending-icon">⏳</div>
+            </div>
+            <p class="stat-value" id="pendingRequestsCount">0</p>
+            <p class="stat-description">Awaiting initial contact</p>
+            <button class="stat-action-btn">Review Now →</button>
+          </div>
+
+          <div
+            class="stat-card clickable"
+            id="scheduled-requests-card"
+            data-filter="scheduled"
+          >
+            <div class="stat-header">
+              <span class="stat-title">Scheduled</span>
+              <div class="stat-icon scheduled-icon">📅</div>
+            </div>
+            <p class="stat-value" id="scheduledRequestsCount">0</p>
+            <p class="stat-description">Consultations booked</p>
+            <button class="stat-action-btn">View Schedule →</button>
+          </div>
+
+          <div
+            class="stat-card clickable"
+            id="conversion-card"
+            data-filter="completed"
+          >
+            <div class="stat-header">
+              <span class="stat-title">Completed</span>
+              <div class="stat-icon completed-icon">✅</div>
+            </div>
+            <p class="stat-value" id="completedRequestsCount">0</p>
+            <p class="stat-description">Consultations finished</p>
+            <button class="stat-action-btn">View Results →</button>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions" style="position: relative">
+          <h2 class="section-title">Quick Actions</h2>
+          <div class="action-buttons">
+            <button class="action-btn primary" id="reviewPendingBtn">
+              <span class="btn-icon">🔍</span>
+              Review Pending Requests
+            </button>
+
+            <div style="position: relative; display: inline-block">
+              <button class="action-btn secondary" id="exportDataBtn">
+                <span class="btn-icon">📊</span>
+                Export Data
+              </button>
+              <!-- Tiny export dropdown -->
+              <div
+                id="exportMenu"
+                class="menu"
+                style="
+                  position: absolute;
+                  right: 0;
+                  top: 100%;
+                  margin-top: 8px;
+                  display: none;
+                "
+              >
+                <div
+                  style="
+                    background: #fff;
+                    color: #173542;
+                    border: 1px solid rgba(0, 0, 0, 0.08);
+                    border-radius: 12px;
+                    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+                    overflow: hidden;
+                    min-width: 180px;
+                    z-index: 1000;
+                  "
+                >
+                  <button
+                    data-type="csv"
+                    style="
+                      display: block;
+                      width: 100%;
+                      text-align: left;
+                      padding: 10px 12px;
+                      border: 0;
+                      background: #fff;
+                      cursor: pointer;
+                    "
+                  >
+                    Export CSV
+                  </button>
+                  <button
+                    data-type="xlsx"
+                    style="
+                      display: block;
+                      width: 100%;
+                      text-align: left;
+                      padding: 10px 12px;
+                      border: 0;
+                      background: #fff;
+                      cursor: pointer;
+                    "
+                  >
+                    Export Excel (.xlsx)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <button class="action-btn secondary" id="addCustomerBtn">
+              <span class="btn-icon">➕</span>
+              Add Customer Manually
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Requests List Section -->
+      <section id="requests-section" class="admin-section">
+        <div class="section-header">
+          <h2 class="section-title" id="requestsSectionTitle">
+            All Consultation Requests
+          </h2>
+          <div class="section-actions">
+            <button class="btn secondary" id="backToOverviewBtn">
+              ← Back to Overview
+            </button>
+            <button class="btn primary" id="refreshDataBtn">Refresh</button>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-container">
+          <div class="filter-group">
+            <label class="filter-label" for="statusFilter">Status:</label>
+            <select class="filter-select" id="statusFilter">
+              <option value="">All Statuses</option>
+              <option value="new">New (Pending Review)</option>
+              <option value="contacted">Contacted</option>
+              <option value="scheduled">Scheduled</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label" for="priorityFilter">Priority:</label>
+            <select class="filter-select" id="priorityFilter">
+              <option value="">All Priorities</option>
+              <option value="high">High Priority</option>
+              <option value="medium">Medium Priority</option>
+              <option value="low">Low Priority</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label" for="searchInput">Search:</label>
+            <input
+              type="text"
+              class="filter-input"
+              id="searchInput"
+              placeholder="Search by name, email, or phone..."
+            />
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label" for="dateFilter">Date:</label>
+            <input type="date" class="filter-input" id="dateFilter" />
+          </div>
+        </div>
+
+        <!-- Requests Table -->
+        <div class="requests-table-container">
+          <table class="requests-table" id="requestsTable">
+            <thead>
+              <tr>
+                <th class="sortable" data-sort="submitted">
+                  <span>Date Submitted</span>
+                  <span class="sort-indicator">↕️</span>
+                </th>
+                <th class="sortable" data-sort="name">
+                  <span>Customer Name</span>
+                  <span class="sort-indicator">↕️</span>
+                </th>
+                <th>Contact Info</th>
+                <th>Services Requested</th>
+                <th class="sortable" data-sort="status">
+                  <span>Status</span>
+                  <span class="sort-indicator">↕️</span>
+                </th>
+                <th>Priority</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="requestsTableBody"></tbody>
+          </table>
+
+          <!-- Empty State -->
+          <div class="empty-state" id="emptyState" style="display: none">
+            <div class="empty-icon">📭</div>
+            <h3>No requests found</h3>
+            <p>No consultation requests match your current filters.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Customer Details Section -->
+      <section id="customer-section" class="admin-section">
+        <div class="section-header">
+          <h2 class="section-title">Customer Management</h2>
+          <div class="section-actions">
+            <button class="btn secondary" id="backFromCustomerBtn">
+              ← Back
+            </button>
+            <button class="btn primary" id="addNewCustomerBtn">
+              Add New Customer
+            </button>
+          </div>
+        </div>
+
+        <div class="customer-grid">
+          <div id="customerList" class="customer-list">
+            <!-- (Optional) Cards can be populated later; Add New Customer uses the same modal -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal for Request Details -->
+    <div class="modal" id="requestModal">
+      <div class="modal-overlay" id="modalOverlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modalTitle">Request Details</h3>
+          <button class="modal-close" id="modalCloseBtn">&times;</button>
+        </div>
+
+        <div class="modal-body" id="modalBody">
+          <div class="customer-details">
+            <div class="detail-section">
+              <h4 class="detail-title">Customer Information</h4>
+              <div class="detail-grid">
+                <div class="detail-item">
+                  <label class="detail-label">Full Name:</label>
+                  <span class="detail-value" id="customerName">-</span>
+                </div>
+                <div class="detail-item">
+                  <label class="detail-label">Phone:</label>
+                  <span class="detail-value" id="customerPhone">-</span>
+                  <button class="contact-btn" id="callCustomerBtn">
+                    📞 Call
+                  </button>
+                </div>
+                <div class="detail-item">
+                  <label class="detail-label">Email:</label>
+                  <span class="detail-value" id="customerEmail">-</span>
+                  <button class="contact-btn" id="emailCustomerBtn">
+                    ✉️ Email
+                  </button>
+                </div>
+                <div class="detail-item">
+                  <label class="detail-label">Location:</label>
+                  <span class="detail-value" id="customerLocation">-</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-section">
+              <h4 class="detail-title">Request Details</h4>
+              <div class="detail-grid">
+                <div class="detail-item">
+                  <label class="detail-label">Services Requested:</label>
+                  <div class="services-tags" id="servicesRequested"></div>
+                </div>
+                <div class="detail-item">
+                  <label class="detail-label">Preferred Hub:</label>
+                  <span class="detail-value" id="preferredHub">-</span>
+                </div>
+                <div class="detail-item full-width">
+                  <label class="detail-label">Customer Message/Goals:</label>
+                  <div class="detail-message" id="customerMessage">-</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-section">
+              <h4 class="detail-title">Status & Actions</h4>
+              <div class="status-actions">
+                <div class="current-status">
+                  <label class="detail-label">Current Status:</label>
+                  <select class="status-select" id="statusSelect">
+                    <option value="new">New (Pending Review)</option>
+                    <option value="contacted">Contacted</option>
+                    <option value="scheduled">Scheduled</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                  </select>
+                </div>
+
+                <div class="priority-setting">
+                  <label class="detail-label">Priority:</label>
+                  <select class="priority-select" id="prioritySelect">
+                    <option value="low">Low Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="high">High Priority</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="action-notes">
+                <label class="detail-label">Admin Notes:</label>
+                <textarea
+                  class="notes-textarea"
+                  id="adminNotes"
+                  placeholder="Add notes about this consultation request..."
+                ></textarea>
+              </div>
+
+              <div class="timeline-section">
+                <h5 class="timeline-title">Action Timeline</h5>
+                <div class="timeline" id="actionTimeline"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="modal-actions">
+            <button class="btn secondary" id="cancelModalBtn">Cancel</button>
+            <button class="btn primary" id="saveChangesBtn">
+              Save Changes
+            </button>
+            <button class="btn danger" id="deleteRequestBtn">
+              Delete Request
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Action Modal -->
+    <div class="modal" id="quickActionModal">
+      <div class="modal-overlay"></div>
+      <div class="modal-content small">
+        <div class="modal-header">
+          <h3 class="modal-title" id="quickActionTitle">Quick Action</h3>
+          <button class="modal-close" id="quickActionCloseBtn">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="quick-action-content" id="quickActionContent"></div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn secondary" id="quickActionCancelBtn">
+            Cancel
+          </button>
+          <button class="btn primary" id="quickActionConfirmBtn">
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Customer Modal -->
+    <div class="modal" id="addCustomerModal">
+      <div class="modal-overlay" id="addCustomerOverlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Add Customer</h3>
+          <button class="modal-close" id="addCustomerClose">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <form id="addCustomerForm" class="form-grid">
+            <div class="form-group">
+              <label>First Name *</label>
+              <input
+                id="addFirstName"
+                type="text"
+                required
+                class="form-input"
+              />
+            </div>
+            <div class="form-group">
+              <label>Last Name *</label>
+              <input id="addLastName" type="text" required class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>Email *</label>
+              <input id="addEmail" type="email" required class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input id="addPhone" type="tel" class="form-input" />
+            </div>
+
+            <div class="form-group">
+              <label>Preferred Hub</label>
+              <select id="addHub" class="form-select">
+                <option value="">Choose…</option>
+                <option value="alexa">Amazon Alexa</option>
+                <option value="google">Google Home</option>
+                <option value="apple">Apple HomeKit</option>
+                <option value="unsure">Not sure yet</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Services Interested</label>
+              <div
+                class="services-list"
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                  gap: 8px;
+                "
+              >
+                <label
+                  ><input type="checkbox" value="lighting" /> Smart
+                  Lighting</label
+                >
+                <label
+                  ><input type="checkbox" value="security" /> Cameras &
+                  Doorbells</label
+                >
+                <label
+                  ><input type="checkbox" value="locks" /> Smart Locks</label
+                >
+                <label><input type="checkbox" value="wifi" /> Mesh Wi-Fi</label>
+                <label
+                  ><input type="checkbox" value="safety" /> Safety &
+                  Monitoring</label
+                >
+                <label
+                  ><input type="checkbox" value="elder" /> One-Tap Panic
+                  Button</label
+                >
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Customer Goals / Notes</label>
+              <textarea
+                id="addGoals"
+                class="form-textarea"
+                placeholder="What does the customer want to achieve?"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Status</label>
+              <select id="addStatus" class="form-select">
+                <option value="new">New (required at creation)</option>
+                <option value="contacted">Contacted</option>
+                <option value="scheduled">Scheduled</option>
+                <option value="in-progress">In Progress</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Priority</label>
+              <select id="addPriority" class="form-select">
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <div class="modal-actions">
+            <button class="btn secondary" id="addCustomerCancel">Cancel</button>
+            <button class="btn primary" id="addCustomerSave">
+              Save Customer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner" style="display: none">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/main.admin.js"></script>
+    <script>
+      // Mont Clay Tech Co. - Admin Dashboard JavaScript
+      // Handles modal functionality and mobile optimization
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Modal elements
+        const addCustomerModal = document.getElementById("addCustomerModal");
+        const addCustomerBtn = document.getElementById("addCustomerBtn");
+        const addNewCustomerBtn = document.getElementById("addNewCustomerBtn");
+        const addCustomerClose = document.getElementById("addCustomerClose");
+        const addCustomerOverlay =
+          document.getElementById("addCustomerOverlay");
+        const addCustomerCancel = document.getElementById("addCustomerCancel");
+        const addCustomerSave = document.getElementById("addCustomerSave");
+        const addCustomerForm = document.getElementById("addCustomerForm");
+
+        // Request modal elements
+        const requestModal = document.getElementById("requestModal");
+        const modalCloseBtn = document.getElementById("modalCloseBtn");
+        const modalOverlay = document.getElementById("modalOverlay");
+        const cancelModalBtn = document.getElementById("cancelModalBtn");
+
+        // Navigation elements
+        const navBtns = document.querySelectorAll(".nav-btn");
+        const sections = document.querySelectorAll(".admin-section");
+        const backToOverviewBtn = document.getElementById("backToOverviewBtn");
+        const backFromCustomerBtn = document.getElementById(
+          "backFromCustomerBtn"
+        );
+
+        // Mobile menu toggle (add mobile menu functionality)
+        function createMobileMenu() {
+          const header = document.querySelector(".admin-header");
+          const nav = document.querySelector(".admin-nav");
+
+          // Create mobile menu button
+          const mobileMenuBtn = document.createElement("button");
+          mobileMenuBtn.className = "mobile-menu-btn";
+          mobileMenuBtn.innerHTML = "☰";
+          mobileMenuBtn.style.cssText = `
+            display: none;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            margin-left: auto;
+        `;
+
+          // Insert mobile menu button
+          const headerContent = document.querySelector(".header-content");
+          headerContent.appendChild(mobileMenuBtn);
+
+          // Toggle mobile menu
+          mobileMenuBtn.addEventListener("click", function () {
+            nav.classList.toggle("mobile-open");
+            mobileMenuBtn.innerHTML = nav.classList.contains("mobile-open")
+              ? "✕"
+              : "☰";
+          });
+
+          // Close mobile menu when clicking nav items
+          navBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+              nav.classList.remove("mobile-open");
+              mobileMenuBtn.innerHTML = "☰";
+            });
+          });
+        }
+
+        // Initialize mobile menu
+        createMobileMenu();
+
+        // Add Customer Modal Functions
+        function openAddCustomerModal() {
+          addCustomerModal.classList.add("active");
+          document.body.style.overflow = "hidden";
+          // Reset form
+          addCustomerForm.reset();
+        }
+
+        function closeAddCustomerModal() {
+          addCustomerModal.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+
+        // Event listeners for Add Customer Modal
+        if (addCustomerBtn) {
+          addCustomerBtn.addEventListener("click", openAddCustomerModal);
+        }
+        if (addNewCustomerBtn) {
+          addNewCustomerBtn.addEventListener("click", openAddCustomerModal);
+        }
+        if (addCustomerClose) {
+          addCustomerClose.addEventListener("click", closeAddCustomerModal);
+        }
+        if (addCustomerOverlay) {
+          addCustomerOverlay.addEventListener("click", closeAddCustomerModal);
+        }
+        if (addCustomerCancel) {
+          addCustomerCancel.addEventListener("click", closeAddCustomerModal);
+        }
+
+        // Save customer functionality
+        if (addCustomerSave) {
+          addCustomerSave.addEventListener("click", function () {
+            const formData = new FormData(addCustomerForm);
+
+            // Get selected services
+            const selectedServices = [];
+            document
+              .querySelectorAll('.services-list input[type="checkbox"]:checked')
+              .forEach((checkbox) => {
+                selectedServices.push(checkbox.value);
+              });
+
+            // Create customer object
+            const customer = {
+              firstName: document.getElementById("addFirstName").value,
+              lastName: document.getElementById("addLastName").value,
+              email: document.getElementById("addEmail").value,
+              phone: document.getElementById("addPhone").value,
+              hub: document.getElementById("addHub").value,
+              services: selectedServices,
+              goals: document.getElementById("addGoals").value,
+              status: document.getElementById("addStatus").value,
+              priority: document.getElementById("addPriority").value,
+              dateSubmitted: new Date().toISOString().split("T")[0],
+            };
+
+            // Validate required fields
+            if (!customer.firstName || !customer.lastName || !customer.email) {
+              showNotification(
+                "Please fill in all required fields (First Name, Last Name, Email)",
+                "error"
+              );
+              return;
+            }
+
+            // Here you would typically save to your backend
+            console.log("Saving customer:", customer);
+            showNotification("Customer added successfully!", "success");
+            closeAddCustomerModal();
+          });
+        }
+
+        // Request Modal Functions
+        function openRequestModal() {
+          requestModal.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeRequestModal() {
+          requestModal.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+
+        // Event listeners for Request Modal
+        if (modalCloseBtn) {
+          modalCloseBtn.addEventListener("click", closeRequestModal);
+        }
+        if (modalOverlay) {
+          modalOverlay.addEventListener("click", closeRequestModal);
+        }
+        if (cancelModalBtn) {
+          cancelModalBtn.addEventListener("click", closeRequestModal);
+        }
+
+        // Navigation functionality
+        function showSection(sectionId) {
+          // Hide all sections
+          sections.forEach((section) => section.classList.remove("active"));
+
+          // Show target section
+          const targetSection = document.getElementById(sectionId + "-section");
+          if (targetSection) {
+            targetSection.classList.add("active");
+          }
+
+          // Update nav buttons
+          navBtns.forEach((btn) => btn.classList.remove("active"));
+          const activeBtn = document.querySelector(
+            `[data-section="${sectionId}"]`
+          );
+          if (activeBtn) {
+            activeBtn.classList.add("active");
+          }
+        }
+
+        // Navigation event listeners
+        navBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const section = btn.dataset.section;
+            showSection(section);
+          });
+        });
+
+        if (backToOverviewBtn) {
+          backToOverviewBtn.addEventListener("click", () =>
+            showSection("overview")
+          );
+        }
+
+        if (backFromCustomerBtn) {
+          backFromCustomerBtn.addEventListener("click", () =>
+            showSection("overview")
+          );
+        }
+
+        // Stat card click handlers
+        const statCards = document.querySelectorAll(".stat-card.clickable");
+        statCards.forEach((card) => {
+          card.addEventListener("click", function () {
+            const filter = this.dataset.filter;
+            showSection("all-requests");
+
+            // Update section title based on filter
+            const titleElement = document.getElementById(
+              "requestsSectionTitle"
+            );
+            if (titleElement) {
+              switch (filter) {
+                case "all":
+                  titleElement.textContent = "All Consultation Requests";
+                  break;
+                case "new":
+                  titleElement.textContent = "Pending Review Requests";
+                  break;
+                case "scheduled":
+                  titleElement.textContent = "Scheduled Consultations";
+                  break;
+                case "completed":
+                  titleElement.textContent = "Completed Consultations";
+                  break;
+              }
+            }
+
+            // Apply filter to status dropdown
+            const statusFilter = document.getElementById("statusFilter");
+            if (statusFilter && filter !== "all") {
+              statusFilter.value = filter;
+            }
+          });
+        });
+
+        // Quick action buttons
+        const reviewPendingBtn = document.getElementById("reviewPendingBtn");
+        if (reviewPendingBtn) {
+          reviewPendingBtn.addEventListener("click", function () {
+            showSection("all-requests");
+            const statusFilter = document.getElementById("statusFilter");
+            if (statusFilter) {
+              statusFilter.value = "new";
+            }
+            const titleElement = document.getElementById(
+              "requestsSectionTitle"
+            );
+            if (titleElement) {
+              titleElement.textContent = "Pending Review Requests";
+            }
+          });
+        }
+
+        // Export functionality
+        const exportDataBtn = document.getElementById("exportDataBtn");
+        const exportMenu = document.getElementById("exportMenu");
+
+        if (exportDataBtn && exportMenu) {
+          exportDataBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            exportMenu.style.display =
+              exportMenu.style.display === "none" ? "block" : "none";
+          });
+
+          // Close export menu when clicking outside
+          document.addEventListener("click", function () {
+            exportMenu.style.display = "none";
+          });
+
+          // Handle export options
+          exportMenu.querySelectorAll("button").forEach((btn) => {
+            btn.addEventListener("click", function () {
+              const type = this.dataset.type;
+              console.log(`Exporting as ${type}`);
+              showNotification(
+                `Export started (${type.toUpperCase()})`,
+                "info"
+              );
+              exportMenu.style.display = "none";
+            });
+          });
+        }
+
+        // Utility function to show notifications
+        function showNotification(message, type = "info") {
+          const container = document.getElementById("notificationContainer");
+          if (!container) return;
+
+          const notification = document.createElement("div");
+          notification.className = `notification ${type}`;
+          notification.textContent = message;
+
+          container.appendChild(notification);
+
+          // Trigger animation
+          setTimeout(() => notification.classList.add("show"), 10);
+
+          // Auto remove after 4 seconds
+          setTimeout(() => {
+            notification.classList.remove("show");
+            setTimeout(() => {
+              if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+              }
+            }, 300);
+          }, 4000);
+        }
+
+        // Make showNotification available globally
+        window.showNotification = showNotification;
+
+        // Close modals with Escape key
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            closeAddCustomerModal();
+            closeRequestModal();
+          }
+        });
+
+        // Initialize sample data (for demo purposes)
+        function initializeSampleData() {
+          // Update stats counters
+          document.getElementById("totalRequestsCount").textContent = "24";
+          document.getElementById("pendingRequestsCount").textContent = "7";
+          document.getElementById("scheduledRequestsCount").textContent = "12";
+          document.getElementById("completedRequestsCount").textContent = "5";
+        }
+
+        // Initialize the dashboard
+        initializeSampleData();
+
+        console.log("Mont Clay Admin Dashboard initialized");
+      });
+    </script>
+  </body>
+</html>
